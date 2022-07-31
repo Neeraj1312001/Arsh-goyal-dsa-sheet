@@ -1,0 +1,31 @@
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        if(head==NULL){
+            return head;
+        }
+        ListNode* ptr=head->next;
+        ListNode* temp = head;
+        while(ptr!=NULL){
+            if(head->val==val){
+                head=head->next;
+                ptr=ptr->next;
+                temp=temp->next;
+            }
+            else if(ptr->val==val){
+                temp->next=ptr->next;
+                ptr=ptr->next;
+            }
+            else{
+                ptr=ptr->next;
+                temp=temp->next;
+            }   
+        }
+        if(head->val==val){ //if we have last element == val 
+            return NULL;
+        }
+        else{
+        return head;
+        }
+    }
+};
