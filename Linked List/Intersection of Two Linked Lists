@@ -3,6 +3,7 @@ public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         ListNode *ptr1 = headA;
 		ListNode *ptr2 = headB;
+		// here head1 head2 are pointors of address
 		while(ptr1 != ptr2){
 			if(ptr1 == NULL){
 				ptr1 = headB;
