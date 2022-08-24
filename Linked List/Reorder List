@@ -1,0 +1,68 @@
+class Solution {
+public:
+/*    ListNode* reverse(ListNode* head) {
+
+        ListNode* prev=NULL;
+        ListNode* curr=head;
+        ListNode* nxt=NULL;
+        
+        while(curr)
+        {
+            nxt=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=nxt;
+        }
+        return prev;
+    }
+    
+    void reorderList(ListNode* head) {
+        
+        //step 1 - using slow and fast pointer approach to find the mid of the list
+        ListNode* slow=head;
+        ListNode* fast=head;
+        
+        while(fast->next!=NULL and fast->next->next!=NULL)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        
+        //step 2 - reverse the second half and split the List into two.
+        ListNode* second=reverse(slow->next); // independent list second
+        slow->next=NULL;
+        ListNode* first=head; // independent list first
+        
+        //step 3 - merging the two list
+        // second list can be shorter when LL size is odd
+        while(second!=NULL)
+        {
+            ListNode* temp1=first->next;
+            ListNode* temp2=second->next;
+            first->next=second;
+            second->next=temp1;
+            first=temp1;
+            second=temp2;
+        }*/
+           //base case i.e if the linked list has zero,one or two elments just return it
+        void reorderList(ListNode* head) {
+        //base case i.e if the linked list has zero,one or two elments just return it
+        if(!head || !head->next || !head->next->next) return;
+        
+        //Find the penultimate node i.e second last node of the linkedlist
+        ListNode* penultimate = head;
+        while (penultimate->next->next) penultimate = penultimate->next;
+        
+        // Link the penultimate with the second element
+        penultimate->next->next = head->next;
+        head->next = penultimate->next;
+        
+        //Again set the penultimate to the the last 
+        penultimate->next = NULL;
+        
+        // Do the above steps rcursive
+        reorderList(head->next->next);
+
+        
+    }
+};
