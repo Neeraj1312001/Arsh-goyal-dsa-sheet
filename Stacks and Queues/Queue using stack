@@ -1,0 +1,65 @@
+class MyQueue { //Unique
+public:
+    stack<int> s1;
+    
+    void push(int x) {
+        if(s1.empty()){
+            s1.push(x);
+            return;
+        }
+        
+        int top=s1.top();
+        s1.pop();
+        push(x);
+        s1.push(top);
+        
+        return;
+    }
+    
+    int pop() {
+        int top=s1.top();
+        s1.pop();
+        return top;
+    }
+    
+    int peek() {
+        return s1.top();
+    }
+    
+    bool empty() {
+        return s1.empty();
+    }
+};
+/* Using two stacks
+class MyQueue {
+public:
+    stack<int>st1,st2; 
+    MyQueue() { 
+    }   
+    void push(int x) {
+        
+        while(!st1.empty()){
+            st2.push(st1.top());
+            st1.pop();
+        }
+        st1.push(x);
+        while(!st2.empty()){
+            st1.push(st2.top());
+            st2.pop();
+        }
+    }
+    
+    int pop() {
+        int x=st1.top();
+        st1.pop();
+        return x;
+    }
+    
+    int peek() {
+        return st1.top();
+    }
+    
+    bool empty() {
+        return st1.empty();
+    }
+};*/
